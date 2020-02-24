@@ -21,14 +21,17 @@ public class Gegenstand
     /**
      * Konstruktor für Objekte der Klasse Gegenstand
      */
-    public Gegenstand(String bildname)
+    public Gegenstand(String bildDateipfad)
     {
-        try {
-            aussehen = new BildComponent(ImageIO.read(getClass().getResourceAsStream(bildname)));
-        } catch (IOException e) {
+        try 
+        {
+            aussehen = new BildComponent(ImageIO.read(getClass().getResourceAsStream(bildDateipfad)));
+        } 
+        catch (IOException e) 
+        {
             e.printStackTrace();
         }
-        aussehen.setSize(100,100);
+        aussehen.setSize(120,180);
     }
     
     public BildComponent getAussehen()

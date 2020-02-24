@@ -7,8 +7,8 @@ import java.awt.Color;
 /**
  * SpielGUI bring die einzelnen ELemente des Spieles durch die beutzung der GUI fÃ¼r den Spieler zusammen.
  * 
- * @Tim Jascheck
- * @11.02.2020
+ * @Tim Jascheck @Elena Nehse
+ * @24.02.2020
  */
 public class SpielGUI
 {
@@ -33,6 +33,10 @@ public class SpielGUI
     /** Aktuelle Wand. */ 
     private Container aktuelleWand;
     
+    /** Ort für die Gegenstände */
+    private JLayeredPane manager;
+    private JPanel hinweisEbene;
+    
     
     /** Farben fuer die GUI. 3 Arten von Blau + Grau + Braun */
         Color hellBlau = new Color(225, 236, 255);
@@ -43,7 +47,7 @@ public class SpielGUI
     
         
     public static void main(String[] args) {
-    	new SpielGUI();
+        new SpielGUI();
     }
         
     /**
@@ -67,9 +71,11 @@ public class SpielGUI
         /** Ein Border-Layout schien als Grundbaustein des Spieles sinnvoll*/
         BorderLayout mainLayout = new BorderLayout();
         fenster.setLayout(mainLayout);
-
-        aktuelleWand = raumEins.getWand(0).getWand();
-        fenster.add(aktuelleWand, BorderLayout.CENTER);
+        
+        /** Hinweisebene und Wand wird eingefügt*/
+        ebenenMitte();
+        fenster.add(manager, BorderLayout.CENTER);
+        
         
         /** Erstellen die Buttons, mit denen man sich im Raum bewegen kann. */
         nachRechtsButton();
@@ -83,6 +89,28 @@ public class SpielGUI
         fenster.setVisible(true);
     }
     
+    /**
+     * Ebenen werden eingefügt
+     * Hinweisebene wird erstellt
+     * Wand eingefügt
+     */
+    private void ebenenMitte()
+    {
+        manager = new JLayeredPane();
+        fenster.add(manager, BorderLayout.CENTER);//
+
+        aktuelleWand = raumEins.getWand(0).getWand();
+        //manager.setLayout(new FlowLayout());//
+        manager.add(aktuelleWand, 0);//
+        manager.setLayer(aktuelleWand, 0);
+        
+        //hinweisEbene = new JPanel();
+        //hinweisEbene.setLayout(new GridLayout(4,4));
+        BildComponent hinweis = new Gegenstand("src/frucht.jpg").getAussehen();
+        //hinweisEbene.add(hinweis);
+        manager.add(hinweis,1);//manager.add(hinweisEbene,1);
+        manager.setLayer(hinweis, 100);//manager.setLayer(hinweisEbene, 100);
+    }
     /**
      * Erstellen die Buttons, mit denen man sich im Raum bewegen kann/umschauen kann. 
      */
