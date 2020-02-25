@@ -13,10 +13,10 @@ public class GegenstandEins extends Gegenstand
     /**
      * Konstruktor für Objekte der Klasse GegenstandEins
      */
-    public GegenstandEins()
+    public GegenstandEins(String bildname)
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        super(bildname);
+        
     }
 
     /**
