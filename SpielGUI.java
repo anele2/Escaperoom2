@@ -35,7 +35,7 @@ public class SpielGUI
     
     /** Gegenstaende */
     
-    private Zettel zettel1=new Zettel();
+    private Zettel zettel1=new Zettel("Hier steht der Text des Zettels; also der Hinweis für das Snape-Raetsel");
     
     /** Farben fuer die GUI. 3 Arten von Blau + Grau + Braun */
         Color hellBlau = new Color(225, 236, 255);
@@ -46,7 +46,7 @@ public class SpielGUI
     
         
     public static void main(String[] args) {
-    	new SpielGUI();
+        new SpielGUI();
     }
         
     /**
@@ -137,7 +137,7 @@ public class SpielGUI
         /** Test-Zettel, erstmal nur zum Testen des Inventars*/
             inventar1.addActionListener(new ActionListener() 
                     {
-                        public void actionPerformed(ActionEvent e) { zettelBetrachtenWechsel(1);}
+                        public void actionPerformed(ActionEvent e) { zettelBetrachtenWechsel();}
                     }     
                     ); 
         JButton inventar2 = new JButton("Speicher2");
@@ -149,13 +149,22 @@ public class SpielGUI
         inventar1.setBackground(braun);
         inventar2.setBackground(braun);
         inventar3.setBackground(braun);
-        fenster.add(inventarflaeche, BorderLayout.SOUTH);
+        
+            JButton ansichtSchl = new JButton("Ansicht schliessen");
+            ansichtSchl.addActionListener(new ActionListener() 
+                    {
+                        public void actionPerformed(ActionEvent e) { wandWechsel(spieler.blickrichtung);}
+                    }     
+                    ); 
+                    inventarflaeche.add(ansichtSchl);
+                    ansichtSchl.setBackground(braun);
+        fenster.add(inventarflaeche, BorderLayout.SOUTH);                  
     }
     
-    public void zettelBetrachtenWechsel(int nummer)
+    public void zettelBetrachtenWechsel()
     {
         fenster.remove(aktuelleWand); //ZunÃ¤chst wird die alte Wand entfernt
-        aktuelleWand = zettel1.getText(); 
+        aktuelleWand = zettel1.getTextLabel(); 
         fenster.add(aktuelleWand, BorderLayout.CENTER);
         fenster.pack(); //Kriege noch nicht hin, das Fenster verlÃ¤sslich zu updaten, ohne es zu "packen"
         fenster.setSize(1000,750); //Hier gibt es bestimmt eine schoenere LÃ¶sung 

@@ -15,21 +15,45 @@ import java.awt.Color;
  */
 public class Zettel extends Gegenstand
 {
-    private JLabel zettelLabel;
+    private JLabel zettelLabel;    
     private String text;
+    
+    
+    private BildComponent wandCont; //Wird im "Center" der Main-GUI angezeigt
+    
     /**
      * Konstruktor für Objekte der Klasse GegenstandEins
      */
-    public Zettel()
+    public Zettel(String textZet)
     {        
         super("src/zettel.jpg");    
-        text = "Hier steht der Text des Zettels; also der Hinweis für das Snape-Raetsel";
-        zettelLabel=new JLabel(text, JLabel.CENTER);
+        text = textZet; 
+        constructJLabel();              
     }
-
+    
+    public void constructJLabel()
+    {
+        /**
+                 * Hintergrundbild für den Zettel, funktiniert aber noch nicht
+                try {
+            		wandCont = new BildComponent(ImageIO.read(getClass().getResourceAsStream("src/zettel.jpg")));
+            		wandCont.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        		} catch (IOException e) {
+        			e.printStackTrace();
+        		}
+                
+                GridLayout wandLayout = new GridLayout(1,1);
+                wandCont.setLayout(wandLayout);
+                wandCont.add(zettelLabel);
+                */
+        zettelLabel=new JLabel(text, JLabel.CENTER);
+        zettelLabel.setFont(new Font("Serif", Font.BOLD, 28));   
+    }    
+    
     /**
+     * @return Liefert das Label vom Zettel zurueck. Wichtig für die anziege in der GUI.
      */
-    public JLabel getText()
+    public JLabel getTextLabel()
     {
         return zettelLabel;
     }
