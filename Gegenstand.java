@@ -17,7 +17,8 @@ public class Gegenstand
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private BildComponent aussehen;
-
+    private int breite;
+    private int höhe;
     /**
      * Konstruktor für Objekte der Klasse Gegenstand
      */
@@ -31,8 +32,14 @@ public class Gegenstand
         {
             e.printStackTrace();
         }
-        aussehen.setSize(120,180);
+        
+        GridLayout wandLayout = new GridLayout(1,1);
+        aussehen.setLayout(wandLayout);
+        breite = aussehen.getWidth();
+        höhe = aussehen.getHeight();
+        aussehen.setSize(100,100);
     }
+    
     
     public BildComponent getAussehen()
     {

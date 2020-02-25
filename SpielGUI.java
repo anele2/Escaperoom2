@@ -7,7 +7,7 @@ import java.awt.Color;
 /**
  * SpielGUI bring die einzelnen ELemente des Spieles durch die beutzung der GUI fÃ¼r den Spieler zusammen.
  * 
- * @Tim Jascheck @Elena Nehse
+ * @Tim Jascheck @Elena Nehse @Paula Seidler
  * @24.02.2020
  */
 public class SpielGUI
@@ -36,6 +36,10 @@ public class SpielGUI
     /** Ort für die Gegenstände */
     private JLayeredPane manager;
     private JPanel hinweisEbene;
+    
+    /** wahrscheinlich unnötig, zum testen (inspizierbar)*/
+    private Gegenstand hinweis;
+    private BildComponent hinweisAussehen;
     
     
     /** Farben fuer die GUI. 3 Arten von Blau + Grau + Braun */
@@ -106,11 +110,24 @@ public class SpielGUI
         
         //hinweisEbene = new JPanel();
         //hinweisEbene.setLayout(new GridLayout(4,4));
-        BildComponent hinweis = new Gegenstand("src/frucht.jpg").getAussehen();
+        hinweis = new Gegenstand("src/minion.png");
+        hinweisAussehen= hinweis.getAussehen();
+        
+        hinweisAussehen.addMouseListener(new MouseListener() 
+                {
+                    public void mouseClicked(MouseEvent e) {}//menü öffnen test:spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung());}
+                    public void mouseEntered(MouseEvent e) {}
+                    public void mouseExited(MouseEvent e) {}
+                    public void mousePressed(MouseEvent e) {}
+                    public void mouseReleased(MouseEvent e) {}
+                }     
+                );
         //hinweisEbene.add(hinweis);
-        manager.add(hinweis,1);//manager.add(hinweisEbene,1);
-        manager.setLayer(hinweis, 100);//manager.setLayer(hinweisEbene, 100);
+        manager.add(hinweisAussehen,1);//manager.add(hinweisEbene,1);
+        manager.setLayer(hinweisAussehen, 100);//manager.setLayer(hinweisEbene, 100);
+        
     }
+    
     /**
      * Erstellen die Buttons, mit denen man sich im Raum bewegen kann/umschauen kann. 
      */
