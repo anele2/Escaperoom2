@@ -1,4 +1,9 @@
-
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import javax.swing.*;
+import java.util.ArrayList;
+import java.awt.Color;
 /**
  * Spieler-Klasse. Kann mit der Gui interagieren. 
  * 
@@ -8,6 +13,7 @@
 public class Spieler
 {
     int blickrichtung;
+    Inventar inventar=new Inventar();
     /**
      * Konstruktor für Objekte der Klasse Spieler
      */
@@ -35,6 +41,11 @@ public class Spieler
     public int getBlickrichtung()
     {
         return blickrichtung;
+    }
+    
+    public Inventar getInventar()
+    {
+        return inventar;
     }
     
 }

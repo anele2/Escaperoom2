@@ -22,7 +22,7 @@ public class SpielGUI
      */
     
     /**Der Spieler*/
-    private Spieler spieler;
+    private Spieler spieler=new Spieler();
     
     /** Die Raeume des Spiels */  
     private Raum raumEins;
@@ -32,6 +32,10 @@ public class SpielGUI
     
     /** Aktuelle Wand. */ 
     private Container aktuelleWand;
+    
+    /** Darstellung des Inventars */
+    
+    private Container inventarCont=spieler.getInventar().getInventarCont();
     
     /** Gegenstaende */
     
@@ -55,7 +59,6 @@ public class SpielGUI
     public SpielGUI()
     {        
         raumEins = new Raum(); //Vorerst nur ein Raum
-        spieler = new Spieler();
         fensterErzeugen(); 
     }
 
