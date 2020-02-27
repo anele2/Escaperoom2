@@ -15,7 +15,7 @@ import java.awt.Color;
  */
 public class Wand
 {    
-    private JLabel test;    //Lediglich fÃ¼r die Prototyp-Phase
+    private JLabel test;    //Lediglich fuer die Prototyp-Phase
     private BildComponent wandCont; //Wird im "Center" der Main-GUI angezeigt
     private ArrayList<Gegenstand> gegenstaende = new ArrayList<Gegenstand>();
     /**

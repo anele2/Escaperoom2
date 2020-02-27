@@ -22,7 +22,7 @@ public class SpielGUI
      */
     
     /**Der Spieler*/
-    private Spieler spieler;
+    private Spieler spieler=new Spieler();
     
     /** Die Raeume des Spiels */  
     private Raum raumEins;
@@ -33,6 +33,7 @@ public class SpielGUI
     /** Aktuelle Wand. */ 
     private Container aktuelleWand;
     
+
     /** Ort für die Gegenstände */
     private JLayeredPane manager;
     private JPanel hinweisEbene;
@@ -41,6 +42,15 @@ public class SpielGUI
     private Gegenstand hinweis;
     private BildComponent hinweisAussehen;
     
+
+    /** Darstellung des Inventars */
+    
+    private Container inventarCont=spieler.getInventar().getInventarCont();
+    
+    /** Gegenstaende */
+    
+    private Zettel zettel1=new Zettel("Hier steht der Text des Zettels; also der Hinweis für das Snape-Raetsel");
+
     
     /** Farben fuer die GUI. 3 Arten von Blau + Grau + Braun */
         Color hellBlau = new Color(225, 236, 255);
@@ -60,7 +70,6 @@ public class SpielGUI
     public SpielGUI()
     {        
         raumEins = new Raum(); //Vorerst nur ein Raum
-        spieler = new Spieler();
         fensterErzeugen(); 
     }
 
@@ -168,7 +177,7 @@ public class SpielGUI
         fenster.pack(); //Kriege noch nicht hin, das Fenster verlÃ¤sslich zu updaten, ohne es zu "packen"
         fenster.setSize(1000,750); //Hier gibt es bestimmt eine schoenere LÃ¶sung 
     }
-    
+        
     public void buttonInventar()
     {
         /** Erstellt einen unfunktionalen Platzhalter, bis ein funktionsfÃ¤higes Inventar vorhanden ist*/
@@ -176,6 +185,12 @@ public class SpielGUI
         FlowLayout inventarLayout = new FlowLayout();
         inventarflaeche.setLayout(inventarLayout);
         JButton inventar1 = new JButton("Speicher1");
+        /** Test-Zettel, erstmal nur zum Testen des Inventars*/
+            inventar1.addActionListener(new ActionListener() 
+                    {
+                        public void actionPerformed(ActionEvent e) { zettelBetrachtenWechsel();}
+                    }     
+                    ); 
         JButton inventar2 = new JButton("Speicher2");
         JButton inventar3 = new JButton("Speicher3");
         inventarflaeche.add(inventar1);
@@ -185,6 +200,24 @@ public class SpielGUI
         inventar1.setBackground(braun);
         inventar2.setBackground(braun);
         inventar3.setBackground(braun);
-        fenster.add(inventarflaeche, BorderLayout.SOUTH);
+        
+            JButton ansichtSchl = new JButton("Ansicht schliessen");
+            ansichtSchl.addActionListener(new ActionListener() 
+                    {
+                        public void actionPerformed(ActionEvent e) { wandWechsel(spieler.blickrichtung);}
+                    }     
+                    ); 
+                    inventarflaeche.add(ansichtSchl);
+                    ansichtSchl.setBackground(braun);
+        fenster.add(inventarflaeche, BorderLayout.SOUTH);                  
+    }
+    
+    public void zettelBetrachtenWechsel()
+    {
+        fenster.remove(aktuelleWand); //ZunÃ¤chst wird die alte Wand entfernt
+        aktuelleWand = zettel1.getTextLabel(); 
+        fenster.add(aktuelleWand, BorderLayout.CENTER);
+        fenster.pack(); //Kriege noch nicht hin, das Fenster verlÃ¤sslich zu updaten, ohne es zu "packen"
+        fenster.setSize(1000,750); //Hier gibt es bestimmt eine schoenere LÃ¶sung 
     }
 } 

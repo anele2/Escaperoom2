@@ -16,9 +16,11 @@ import java.awt.Color;
 public class Gegenstand
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private BildComponent aussehen;
+
+    protected BildComponent aussehen;
     private int breite;
     private int höhe;
+
     /**
      * Konstruktor für Objekte der Klasse Gegenstand
      */
