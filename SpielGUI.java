@@ -34,6 +34,7 @@ public class SpielGUI
     private Container aktuelleWand;
     
 
+
     /** Ort für die Gegenstände */
     private JLayeredPane manager;
     private JPanel hinweisEbene;
@@ -50,6 +51,7 @@ public class SpielGUI
     /** Gegenstaende */
     
     private Zettel zettel1=new Zettel("Hier steht der Text des Zettels; also der Hinweis für das Snape-Raetsel");
+
 
     
     /** Farben fuer die GUI. 3 Arten von Blau + Grau + Braun */
@@ -119,8 +121,9 @@ public class SpielGUI
         
         //hinweisEbene = new JPanel();
         //hinweisEbene.setLayout(new GridLayout(4,4));
-        hinweis = new Gegenstand("src/minion.png");
+        hinweis = new Gegenstand("src/minion.png",100,100);
         hinweisAussehen= hinweis.getAussehen();
+        hinweisAussehen.setLocation(hinweis.getXPosition(),hinweis.getYPosition());
         
         hinweisAussehen.addMouseListener(new MouseListener() 
                 {

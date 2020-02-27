@@ -18,13 +18,13 @@ public class Gegenstand
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
 
     protected BildComponent aussehen;
-    private int breite;
-    private int höhe;
-
+    protected int xPosition;
+    protected int yPosition;
+    
     /**
      * Konstruktor für Objekte der Klasse Gegenstand
      */
-    public Gegenstand(String bildDateipfad)
+    public Gegenstand(String bildDateipfad, int ortX, int ortY)
     {
         try 
         {
@@ -35,10 +35,10 @@ public class Gegenstand
             e.printStackTrace();
         }
         
-        GridLayout wandLayout = new GridLayout(1,1);
-        aussehen.setLayout(wandLayout);
-        breite = aussehen.getWidth();
-        höhe = aussehen.getHeight();
+        xPosition = ortX;
+        yPosition = ortY;
+        //int breite = aussehen.getWidth();
+        //int höhe = aussehen.getHeight();
         aussehen.setSize(100,100);
     }
     
@@ -46,5 +46,15 @@ public class Gegenstand
     public BildComponent getAussehen()
     {
         return aussehen;
+    }
+    
+    public int getXPosition()
+    {
+        return xPosition;
+    }
+    
+    public int getYPosition()
+    {
+        return yPosition;
     }
 }
